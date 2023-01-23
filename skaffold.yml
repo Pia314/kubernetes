@@ -1,0 +1,21 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: masteringmicroservice/gateway
+      context: ../CC_microservices_gateway
+      jib: {}
+    - image: masteringmicroservice/invoice
+      context: ../CC_microservices_invoice
+      jib: {}
+    - image: masteringmicroservice/notification
+      context: ../CC_microservices_notification
+      jib: {}
+    - image: masteringmicroservice/productorder
+      context: ../CC_microservices_productorder
+      jib: {}
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:latest"
+deploy:
+  kustomize: {}
